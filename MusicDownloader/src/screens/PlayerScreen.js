@@ -15,7 +15,7 @@ import TrackPlayer, {
     useProgress,
     RepeatMode,
 } from 'react-native-track-player';
-import Slider from 'react-native-slider';
+import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { COLORS } from '../utils/config';
 
