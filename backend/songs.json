@@ -1,0 +1,25 @@
+{
+  "songs": [
+    {
+      "id": "25c28bfe-54e3-434a-94c0-caa06f30389c",
+      "title": "Me at the zoo",
+      "artist": "Unknown Artist",
+      "duration": 19,
+      "filename": "25c28bfe-54e3-434a-94c0-caa06f30389c.webm",
+      "thumbnail": "https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg?sqp=-oaymwEmCOADEOgC8quKqQMa8AEB-AG-AoAC8AGKAgwIABABGFUgWShlMA8=&rs=AOn4CLA9eLBatYv9WbkD4BbZ2Im-biSPTw",
+      "source": "youtube",
+      "sourceUrl": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+      "audioUrl": "/downloads/25c28bfe-54e3-434a-94c0-caa06f30389c.webm",
+      "createdAt": "2026-03-23T04:41:37.669Z",
+      "favorite": true
+    }
+  ],
+  "playlists": [
+    {
+      "id": "5f192508-9561-48b5-8429-2381e750660a",
+      "name": "Test Playlist",
+      "songIds": [],
+      "createdAt": "2026-03-23T04:36:45.348Z"
+    }
+  ]
+}

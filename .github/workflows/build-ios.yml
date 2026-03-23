@@ -1,0 +1,64 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: MusicDownloader/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd MusicDownloader
+          npm install
+
+      - name: Install CocoaPods dependencies
+        run: |
+          cd MusicDownloader/ios
+          pod install
+
+      - name: Build iOS Archive
+        run: |
+          cd MusicDownloader/ios
+          xcodebuild -workspace MusicDownloader.xcworkspace \
+            -scheme MusicDownloader \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination generic/platform=iOS \
+            -archivePath $PWD/build/MusicDownloader.xcarchive \
+            archive \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            DEVELOPMENT_TEAM="" \
+            CODE_SIGN_ENTITLEMENTS=""
+
+      - name: Create IPA
+        run: |
+          cd MusicDownloader/ios
+          mkdir -p build/Payload
+          cp -r build/MusicDownloader.xcarchive/Products/Applications/MusicDownloader.app build/Payload/
+          cd build
+          zip -r MusicDownloader.ipa Payload
+          echo "IPA created successfully!"
+          ls -la MusicDownloader.ipa
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MusicDownloader-IPA
+          path: MusicDownloader/ios/build/MusicDownloader.ipa
+          retention-days: 30
