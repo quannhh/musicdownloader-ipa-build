@@ -24,6 +24,8 @@ jobs:
         run: |
           cd MusicDownloader
           npm install
+          # Pin a React Native 0.76-compatible reanimated version for CI.
+          npm install react-native-reanimated@3.16.7 --save-exact
 
       - name: Install CocoaPods dependencies
         run: |
